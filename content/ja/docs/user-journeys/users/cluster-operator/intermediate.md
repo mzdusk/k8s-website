@@ -51,4 +51,21 @@ Podがどのようにスケジューリングされ、優先順位付けされ�
 * [コンテナに対する計算資源の割り当て](/ja/docs/concepts/configuration/manage-compute-resources-container/)
 * [構成ベストプラクティス](/ja/docs/concepts/configuration/overview/)
 
+## セキュリティベストプラクティスの実践
+
+クラスタをセキュアにすることはKubernetes自身のスコープ外の作業も含みます。
+
+Kubernetesではアクセス制御を構成します。
+
+* [Kubernetes APIへのアクセス制御](/ja/docs/reference/access-authn-authz/controlling-access/)
+* [認証](/ja/docs/reference/access-authn-authz/authentication/)
+* [アドミッションコントローラの使用](/ja/docs/reference/access-authn-authz/admission-controllers/)
+
+認可も構成します。したがって、どのようにユーザとサービスがAPIサーバに認証し、もしくはアクセス権があるかどうかだけでなく、どのリソースへのアクセス権があるのかも決定します。ロールベースアクセス制御 (RBAC) はKubernetesリソースへの認可の制御のための推奨される仕組みです。
+
+* [認可の概要](/ja/docs/reference/access-authn-authz/authorization/)
+* [RBAC認可の使用](/ja/docs/reference/access-authn-authz/rbac/)
+
+パスワードやトークン、キーといった機微なデータを保持するためにSecretを作成すべきです。しかしながら、Secretが提供できる保護には限界があることに留意してください。[Secretのドキュメントのリスクセクション](/ja/docs/concepts/configuration/secret/#リスク)を参照してください。
+
 {{% /capture %}}
