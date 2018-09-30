@@ -66,6 +66,35 @@ Kubernetesではアクセス制御を構成します。
 * [認可の概要](/ja/docs/reference/access-authn-authz/authorization/)
 * [RBAC認可の使用](/ja/docs/reference/access-authn-authz/rbac/)
 
-パスワードやトークン、キーといった機微なデータを保持するためにSecretを作成すべきです。しかしながら、Secretが提供できる保護には限界があることに留意してください。[Secretのドキュメントのリスクセクション](/ja/docs/concepts/configuration/secret/#リスク)を参照してください。
+パスワードやトークン、キーといった機微なデータを保持するためにSecretを作成すべきです。しかしながら、Secretが提供できる保護には限界があることに留意してください。[Secretのドキュメントのリスクセクション](/ja/docs/concepts/configuration/secret/#risks)を参照してください。
+
+## カスタムロギングとモニタリングの実装
+
+クラスタの状態をモニタリングすることは重要です。メトリクスを集め、ロギングし、それらの情報へのアクセスを提供することは共通のニーズです。Kubernetesはいくつかの基本的なロギング構造を提供しますが、ログデータの集約と分析を手助けする追加のツールを使いたくなるかもしれまん。
+
+どのようにしてコンテナがロギングするのかと一般的なパターンを理解するために、[Kubernetesロギングの基本](/docs/concepts/cluster-administration/logging/)から始めましょう。クラスタ管理者はこれらのログを集めて集約するための何かを追加したくなることがしばしばあります。以下のトピックを参照してください。
+
+* [ElasticsearchとKibanaを使ったロギング](/docs/tasks/debug-application-cluster/logging-elasticsearch-kibana/)
+* [Stackdriverを使ったロギング](/docs/tasks/debug-application-cluster/logging-stackdriver/)
+
+ログの集約のように、多くのクラスタは、メトリクスの取得とその閲覧を手助けする追加のソフトを活用します。ツールの概要が[計算資源、ストレージ資源、ネットワーク資源をモニタリングするためのツール](/docs/tasks/debug-application-cluster/resource-usage-monitoring/)にあります。Kubenetesもカスタムメトリクスを使ったHorizontal Pos Autoscalerによって使われる[コアメトリクスパイプライン](/docs/tasks/debug-application-cluster/core-metrics-pipeline/)をサポートしています。
+
+他のCNCFプロジェクトである[Prometheus](https://prometheus.io/)はメトリクスのキャプチャと一時的な収集をサポートする一般的な選択肢です。インストールには、[stable/prometheus](https://github.com/kubernetes/charts/tree/master/stable/prometheus) [helm](https://helm.sh/) chartや、CoreOSが提供する[prometheus operator](https://github.com/coreos/prometheus-operator)と[kube-prometheus](https://github.com/coreos/prometheus-operator/tree/master/contrib/kube-prometheus)などのオプションがあり、これらにはGraphanaダッシュボードと一般的な構成がアドオンされています。
+
+[Minikube](https://github.com/kubernetes/minikube)やいくつかのKubernetesクラスタでの一般的な構成は
+、[InfluxDBとGraphanaと連携した](https://github.com/kubernetes/heapster/blob/master/docs/influxdb.md)[Heapster](https://github.com/kubernetes/heapster)を使います。[この構成でのインストール方法のウォークスルー](https://blog.kublr.com/how-to-utilize-the-heapster-influxdb-grafana-stack-in-kubernetes-for-monitoring-pods-4a553f4d36c9)があります。1.11以降、[sig-instrumentation](https://github.com/kubernetes/community/tree/master/sig-instrumentation)のとおり、Heapsterは非推奨となりました。詳細は[Prometheus vs. Heapster vs. Kubernetes Metrics APIs](https://brancz.com/2018/01/05/prometheus-vs-heapster-vs-kubernetes-metrics-apis/)を参照してください。
+
+[Datadog](https://docs.datadoghq.com/integrations/kubernetes/)のようなホステッドデータ分析サービスもKubernetesとの統合を提案しています。
+
+## 追加のリソース
+
+クラスタ管理:
+
+* [Clusterのトラブルシューティング](/docs/tasks/debug-application-cluster/debug-cluster/)
+* [PodとReplication Controllerのデバッグ](/docs/tasks/debug-application-cluster/debug-pod-replication-controller/)
+* [Initコンテナのデバッグ](/docs/tasks/debug-application-cluster/debug-init-containers/)
+* [Stateful Setのデバッグ](/docs/tasks/debug-application-cluster/debug-stateful-set/)
+* [アプリケーションのデバッグ](/docs/tasks/debug-application-cluster/debug-application/)
+* [クラスタ調査のためにexplorerを使う](https://github.com/kubernetes/examples/blob/master/staging/explorer/README.md)
 
 {{% /capture %}}
