@@ -5,16 +5,16 @@ index: 1
 foundational:
   - label: Get an overview of Kubernetes
     icon: fa-globe
-    url: /docs/user-journeys/users/cluster-operator/foundational
+    url: /ja/docs/user-journeys/users/cluster-operator/foundational
   - label: Learn about Kubernetes basics
     icon: fa-cog
-    url: /docs/user-journeys/users/cluster-operator/foundational#section-2
+    url: /ja/docs/user-journeys/users/cluster-operator/foundational#section-2
   - label: Get information about my cluster
     icon: fa-info-circle
-    url: /docs/user-journeys/users/cluster-operator/foundational#section-3
+    url: /ja/docs/user-journeys/users/cluster-operator/foundational#section-3
   - label: Explore additional resources
     icon: fa-compass
-    url: /docs/user-journeys/users/cluster-operator/foundational#section-4
+    url: /ja/docs/user-journeys/users/cluster-operator/foundational#section-4
 intermediate:
   - label: "Work with Ingress, Networking, Storage, Workloads"
     icon: fa-sliders
