@@ -5,16 +5,16 @@ index: 0
 foundational:
   - label: Get started with a cluster
     icon: fa-television
-    url: /docs/user-journeys/users/application-developer/foundational
+    url: /ja/docs/user-journeys/users/application-developer/foundational
   - label: Deploy an application
     icon: fa-retweet
-    url: /docs/user-journeys/users/application-developer/foundational#section-2
+    url: /ja/docs/user-journeys/users/application-developer/foundational#section-2
   - label: Understand basic Kubernetes architecture
     icon: fa-cog
-    url: /docs/user-journeys/users/application-developer/foundational#section-3
+    url: /ja/docs/user-journeys/users/application-developer/foundational#section-3
   - label: Explore additional resources
     icon: fa-book
-    url: /docs/user-journeys/users/application-developer/foundational#section-4
+    url: /ja/docs/user-journeys/users/application-developer/foundational#section-4
 intermediate:
   - label: Learn additional workload patterns
     icon: fa-cogs

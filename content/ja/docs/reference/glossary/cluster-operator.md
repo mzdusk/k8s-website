@@ -1,20 +1,20 @@
 ---
-title: Cluster Operator
+title: クラスタ管理者
 id: cluster-operator
 date: 2018-04-12
 full_link: 
 short_description: >
-  A person who configures, controls, and monitors clusters.
+  クラスタを構成、管理、監視する人
 
 aka: 
 tags:
 - user-type
 ---
- A person who configures, controls, and monitors clusters.
+  クラスタを構成、管理、監視する人
 
 <!--more--> 
 
-Their primary responsibility is keeping a cluster up and running, which may involve periodic maintenance activities or upgrades.<br>
+クラスタを稼動させ続けることが主な責任です。定期的にメンテナンスやアップグレードを行うこともあります。<br>
 
-**NOTE:** Cluster operators are different from the [Operator pattern](https://coreos.com/operators) that extends the Kubernetes API.
+**メモ:** クラスタ管理者はKubernetes APIを拡張する[Operator pattern](https://coreos.com/operators)とは異なります。
 
