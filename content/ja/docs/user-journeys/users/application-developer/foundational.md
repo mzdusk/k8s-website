@@ -44,14 +44,14 @@ Kubernetesに触れたばかりで、完全な開発環境のセットアップ�
 
 以下の例はKubernetesアプリのデプロイの基本を示します。
 
-  * **ステートレスアプリ**: {{< link text="シンプルなNginxサーバのデプロイ" url="/docs/tasks/run-application/run-stateless-application-deployment/" >}}
+  * **ステートレスアプリ**: {{< link text="シンプルなNginxサーバのデプロイ" url="/ja/docs/tasks/run-application/run-stateless-application-deployment/" >}}
   * **ステートフルアプリ**: {{< link text="MySQLデータベースのデプロイ" url="/docs/tasks/run-application/run-single-instance-stateful-application/" >}}
 
 これらのデプロイタスクを通じて、以下に詳しくなれます。
 
 * 全体的な概念
 
-  * **構成ファイル** - YAMLまたはJSONで書かれ、Kubernetes APIオブジェクトの観点からアプリケーションの望ましい状態を記述します。ファイルには1つまたは複数のAPIオブジェクトの記述を含められます (*マニフェス*)。(ステートレスアプリの[YAMLの例](/docs/tasks/run-application/run-stateless-application-deployment/#creating-and-exploring-an-nginx-deployment)を参照してください)
+  * **構成ファイル** - YAMLまたはJSONで書かれ、Kubernetes APIオブジェクトの観点からアプリケーションの望ましい状態を記述します。ファイルには1つまたは複数のAPIオブジェクトの記述を含められます (*マニフェス*)。(ステートレスアプリの[YAMLの例](/ja/docs/tasks/run-application/run-stateless-application-deployment/#creating-and-exploring-an-nginx-deployment)を参照してください)
 
   * **{{< glossary_tooltip text="Pod" term_id="pod" >}}** - Kubernetesで実行するすべてのワークロードの基本単位です。*Deployment* や *Job* といったワークロードには1つまたは複数のPodで構成されます。詳細は{{< link text="Podとノードの説明" url="/docs/tutorials/kubernetes-basics/explore-intro/" >}}を参照してください。
 
@@ -68,7 +68,7 @@ Kubernetesに触れたばかりで、完全な開発環境のセットアップ�
 
 * **{{< glossary_tooltip text="ラベル" term_id="label" >}}** - APIオブジェクトの分類と選択に使える識別メタデータです。以下のように、ラベルにはさまざまな活用があります。
 
-  * *Deploymentで実行する正しい数のレプリカ (Pod) を保つ。* 指定されたラベル ({{< link text="ステートレスアプリの例" url="/docs/tasks/run-application/run-stateless-application-deployment/#creating-and-exploring-an-nginx-deployment" >}}での`app: nginx`)はDeploymentが新しく作成したPodに (`spec.template.labels`フィールドの値として) 印をつける、どのPodが既に管理されているかを (`spec.selector.matchLabels`の値として) 問い合わせるために使います。
+  * *Deploymentで実行する正しい数のレプリカ (Pod) を保つ。* 指定されたラベル ({{< link text="ステートレスアプリの例" url="/ja/docs/tasks/run-application/run-stateless-application-deployment/#creating-and-exploring-an-nginx-deployment" >}}での`app: nginx`)はDeploymentが新しく作成したPodに (`spec.template.labels`フィールドの値として) 印をつける、どのPodが既に管理されているかを (`spec.selector.matchLabels`の値として) 問い合わせるために使います。
   
   * *サービスをDeploymentに結びつける。* `selector`フィールドを使います。これは{{< link text="ステートフルアプリの例" url="/docs/tasks/run-application/run-single-instance-stateful-application/#deploy-mysql" >}}で例示します。
   

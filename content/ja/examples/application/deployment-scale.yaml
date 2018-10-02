@@ -1,0 +1,19 @@
+apiVersion: apps/v1 # バージョン1.9.0より前であればapps/v1beta2を使う
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 4 # replicasを2から4に更新する
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.8
+        ports:
+        - containerPort: 80
