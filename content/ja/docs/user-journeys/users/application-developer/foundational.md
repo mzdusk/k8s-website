@@ -45,7 +45,7 @@ Kubernetesに触れたばかりで、完全な開発環境のセットアップ�
 以下の例はKubernetesアプリのデプロイの基本を示します。
 
   * **ステートレスアプリ**: {{< link text="シンプルなNginxサーバのデプロイ" url="/ja/docs/tasks/run-application/run-stateless-application-deployment/" >}}
-  * **ステートフルアプリ**: {{< link text="MySQLデータベースのデプロイ" url="/docs/tasks/run-application/run-single-instance-stateful-application/" >}}
+  * **ステートフルアプリ**: {{< link text="MySQLデータベースのデプロイ" url="/ja/docs/tasks/run-application/run-single-instance-stateful-application/" >}}
 
 これらのデプロイタスクを通じて、以下に詳しくなれます。
 
@@ -70,7 +70,7 @@ Kubernetesに触れたばかりで、完全な開発環境のセットアップ�
 
   * *Deploymentで実行する正しい数のレプリカ (Pod) を保つ。* 指定されたラベル ({{< link text="ステートレスアプリの例" url="/ja/docs/tasks/run-application/run-stateless-application-deployment/#creating-and-exploring-an-nginx-deployment" >}}での`app: nginx`)はDeploymentが新しく作成したPodに (`spec.template.labels`フィールドの値として) 印をつける、どのPodが既に管理されているかを (`spec.selector.matchLabels`の値として) 問い合わせるために使います。
   
-  * *サービスをDeploymentに結びつける。* `selector`フィールドを使います。これは{{< link text="ステートフルアプリの例" url="/docs/tasks/run-application/run-single-instance-stateful-application/#deploy-mysql" >}}で例示します。
+  * *サービスをDeploymentに結びつける。* `selector`フィールドを使います。これは{{< link text="ステートフルアプリの例" url="/ja/docs/tasks/run-application/run-single-instance-stateful-application/#deploy-mysql" >}}で例示します。
   
   * *{{< glossary_tooltip text="kubectl" term_id="kubectl" >}}を使う場合に、Kubernetesオブジェクトのサブセットを探す。* 例えば、`kubectl get deployments --selector=app=nginx`はnginxアプリのDeploymentのみを表示します。
 

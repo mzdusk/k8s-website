@@ -1,0 +1,1 @@
+デフォルト[StorageClass](/docs/concepts/storage/storage-classes/)を持つ動的PersistentVolumeプロビジョナーか、[PersistentVolumeClaims](/ja/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)を満たす[静的にプロビジョニングしたPersistentVolumes](/ja/docs/concepts/storage/persistent-volumes/#provisioning)が必要です。

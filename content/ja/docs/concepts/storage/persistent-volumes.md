@@ -30,7 +30,7 @@ weight: 20
 
 PV はクラスターのリソースです。PVC はこれらのリソースへの要求で、リソースをチェックする Claim としても振る舞います。PV と PVC 間のやりとりは以下のライフサイクルに従います。
 
-### 供給
+### プロビジョニング {#provisioning}
 
 PV は静的と動的の2つの方法で供給されます。
 
@@ -358,7 +358,7 @@ Kubernetes 管理者は Persistent Volume がノードにマウントされる�
 
 CLI では PV に結合している PVC の名前が表示される。
 
-## PersistentVolumeClaim
+## PersistentVolumeClaim {#persistentvolumeclaims}
 
 各 PVC にはスペックとステータスが含まれ、これは Claim の仕様とステータスです。
 
