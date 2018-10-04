@@ -61,7 +61,7 @@ Kubernetesとはダッシュボード、API、Kubernetes APIとやりとりす�
 
 ### チュートリアル
 
-* [Kubernetesの基本](/docs/tutorials/kubernetes-basics/)
+* [Kubernetesの基本](/ja/docs/tutorials/kubernetes-basics/)
 * [Kubernetes 101](/docs/user-guide/walkthrough/) - kubectlコマンドラインインタフェースとPod
 * [Kubernetes 201](/docs/user-guide/walkthrough/k8s201/) - ラベル、Deployment、サービス、ヘルスチェック
 * [ConfigMapによるRedisの構成](/docs/tutorials/configuration/configure-redis-using-configmap/)

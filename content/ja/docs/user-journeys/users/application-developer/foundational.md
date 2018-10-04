@@ -24,7 +24,7 @@ Kubernetesでアプリケーションを実行することに関心のある開�
 
 Kubernetesに触れたばかりで、完全な開発環境のセットアップなしに単に経験したいだけであれば、 *Webベース環境* が適しています。
 
-* {{< link text="Kubernetesの基本" url="/docs/tutorials/kubernetes-basics/#basics-modules" >}} - 6つの基本的なKubernetesのワークフローを紹介します。各セクションはブラウザベースでの説明を行い、インタラクティブな演習はそれ自身のKubernetes環境を備えています。
+* {{< link text="Kubernetesの基本" url="/ja/docs/tutorials/kubernetes-basics/#basics-modules" >}} - 6つの基本的なKubernetesのワークフローを紹介します。各セクションはブラウザベースでの説明を行い、インタラクティブな演習はそれ自身のKubernetes環境を備えています。
 
 * {{< link text="Katacoda" url="https://www.katacoda.com/courses/kubernetes/playground" >}} - 上記の *Kubernetesの基本* で使われる環境と等価な遊び場です。Katacodaは、"Liveness and Readiness Healthchecks"のような、{{< link text="高度なチュートリアル" url="https://www.katacoda.com/courses/kubernetes/" >}}も提供しています。
 
@@ -197,7 +197,7 @@ Kubernetesドキュメントは非常に詳細です。より深く掘り下げ�
 
 ### チュートリアル
 
-* {{< link text="Kubernetesの基本" url="/docs/tutorials/kubernetes-basics/" >}}
+* {{< link text="Kubernetesの基本" url="/ja/docs/tutorials/kubernetes-basics/" >}}
 
 * {{< link text="Hello Minikube" url="/docs/tutorials/stateless-application/hello-minikube/" >}} *(Macのみ)*
 
