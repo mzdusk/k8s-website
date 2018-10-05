@@ -17,7 +17,7 @@ Kubernetesクラスタの管理と運用を始める方法を学びたいので�
 
 ## Kubernetesの概要
 
-まだであれば、[Kubernetesとは](/docs/concepts/overview/what-is-kubernetes/)を読んで理解を深めてください。ここでは数多くの基本的な概念や用語を紹介します。
+まだであれば、[Kubernetesとは](/ja/docs/concepts/overview/what-is-kubernetes/)を読んで理解を深めてください。ここでは数多くの基本的な概念や用語を紹介します。
 
 Kubernetsは非常に柔軟なので、クラスタは様々な場所で実行できます。自身のラップトップや仮想マシンの中で動作するローカルの開発機からKubernetesとやりとりができます。Kubernetesはローカルやクラウドプロバイダでホストされている仮想マシン上でも実行できますし、ベアメタル上でも実行できます。
 
