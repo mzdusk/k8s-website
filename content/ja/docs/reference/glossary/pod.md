@@ -2,7 +2,7 @@
 title: Pod
 id: pod
 date: 2018-04-12
-full_link: /docs/concepts/workloads/pods/pod-overview/
+full_link: /ja/docs/concepts/workloads/pods/pod-overview/
 short_description: >
   最も小さくてシンプルなKubernetesオブジェクト。Podはクラスタ上で稼動するコンテナのセットを表現します。
 

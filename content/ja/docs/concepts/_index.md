@@ -30,7 +30,7 @@ Kubernetesにはシステムの状態を表現する数多くの抽象概念が�
 
 基本的なKubernetesオブジェクトには以下があります。
 
-* [Pod](/docs/concepts/workloads/pods/pod-overview/)
+* [Pod](/ja/docs/concepts/workloads/pods/pod-overview/)
 * [Service](/docs/concepts/services-networking/service/)
 * [Volume](/ja/docs/concepts/storage/volumes/)
 * [Namespace](/docs/concepts/overview/working-with-objects/namespaces/)

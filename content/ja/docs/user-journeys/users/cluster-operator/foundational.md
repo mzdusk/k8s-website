@@ -30,7 +30,7 @@ Kubernetesクラスタの管理と運用に詳しくなる良い方法は、セ�
 
 Kubernetesとはダッシュボード、API、Kubernetes APIとやりとりする (`kubectl`のような) コマンドラインツールを使ってやりとりできます。構成ファイルを使って[クラスタアクセスを構造化](/docs/concepts/configuration/organize-cluster-access-kubeconfig/)することに慣れてください。Kubernetes APIは、Kubernetes上でソフトウェアを動作させるために使う構成要素や抽象概念を提供する多くのリソースを公開しています。これらのリソースについての詳細は[Kubernetesオブジェクトの理解](/docs/concepts/overview/working-with-objects/kubernetes-objects)参照してください。これらのリソースはKubernetesドキュメントにある数多くの記事で取り上げられています。
 
-* [Pod Overview](/docs/concepts/workloads/pods/pod-overview/)
+* [Pod Overview](/ja/docs/concepts/workloads/pods/pod-overview/)
   * [Pods](/docs/concepts/workloads/pods/pod/)
   * [ReplicaSets](/docs/concepts/workloads/controllers/replicaset/)
   * [Deployments](/docs/concepts/workloads/controllers/deployment/)

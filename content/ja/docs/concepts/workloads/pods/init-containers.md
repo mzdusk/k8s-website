@@ -17,7 +17,7 @@ weight: 40
 
 ## Initコンテナを知る
 
-[Pod](/docs/concepts/workloads/pods/pod-overview/)はアプリを実行する複数のコンテナを持てますが、1つ以上のInitコンテナを持つこともでき、これはアプリコンテナがスタートする前に実行されます。
+[Pod](/ja/docs/concepts/workloads/pods/pod-overview/)はアプリを実行する複数のコンテナを持てますが、1つ以上のInitコンテナを持つこともでき、これはアプリコンテナがスタートする前に実行されます。
 
 Initコンテナは以下を除いて通常のコンテナと良く似ています。
 

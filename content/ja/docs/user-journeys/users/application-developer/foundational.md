@@ -51,7 +51,7 @@ Kubernetesに触れたばかりで、完全な開発環境のセットアップ�
 
 * 全体的な概念
 
-  * **構成ファイル** - YAMLまたはJSONで書かれ、Kubernetes APIオブジェクトの観点からアプリケーションの望ましい状態を記述します。ファイルには1つまたは複数のAPIオブジェクトの記述を含められます (*マニフェス*)。(ステートレスアプリの[YAMLの例](/ja/docs/tasks/run-application/run-stateless-application-deployment/#creating-and-exploring-an-nginx-deployment)を参照してください)
+  * **構成ファイル** - YAMLまたはJSONで書かれ、Kubernetes APIオブジェクトの観点からアプリケーションの望ましい状態を記述します。ファイルには1つまたは複数のAPIオブジェクトの記述を含められます (*マニフェスト*)。(ステートレスアプリの[YAMLの例](/ja/docs/tasks/run-application/run-stateless-application-deployment/#creating-and-exploring-an-nginx-deployment)を参照してください)
 
   * **{{< glossary_tooltip text="Pod" term_id="pod" >}}** - Kubernetesで実行するすべてのワークロードの基本単位です。*Deployment* や *Job* といったワークロードには1つまたは複数のPodで構成されます。詳細は{{< link text="Podとノードの説明" url="/docs/tutorials/kubernetes-basics/explore-intro/" >}}を参照してください。
 
@@ -80,7 +80,7 @@ Kubernetesに触れたばかりで、完全な開発環境のセットアップ�
 
 ストレージについても考えたいと思うでしょう。Kubernetesは様々なストレージのニーズに応じて、様々なタイプのストレージAPIオブジェクトを提供しています。
 
-* **{{< glossary_tooltip text="Volumes" term_id="volume" >}}** - Podのライフサイクルに結びつうストレージを定義します。したがって、コンテナストレージよりも永続的です。詳細は{{< link text="Volumeストレージの構成方法" url="/docs/tasks/configure-pod-container/configure-volume-storage/" >}}や{{< link text="Volumeストレージの詳細" url="/ja/docs/concepts/storage/volumes/" >}}を参照してください。
+* **{{< glossary_tooltip text="Volumes" term_id="volume" >}}** - Podのライフサイクルに結びつくストレージを定義します。したがって、コンテナストレージよりも永続的です。詳細は{{< link text="Volumeストレージの構成方法" url="/docs/tasks/configure-pod-container/configure-volume-storage/" >}}や{{< link text="Volumeストレージの詳細" url="/ja/docs/concepts/storage/volumes/" >}}を参照してください。
 
 * **{{< glossary_tooltip text="PersistentVolumes" term_id="persistent-volume" >}}** と **{{< glossary_tooltip text="PersistentVolumeClaims" term_id="persistent-volume-claim" >}}** - クラスタレベルのストレージを定義します。通常、クラスタ管理者がPersistentVolumeオブジェクトを定義し、クラスタユーザ (アプリケーション開発者) がアプリケーションが必要とするPersistentVolumeClaimオブジェクトを定義します。詳細は{{< link text="永続ストレージのセットアップ方法" url="/docs/tasks/configure-pod-container/configure-persistent-volume-storage/" >}}や{{< link text="PersistentVolumeの詳細" url="/ja/docs/concepts/storage/persistent-volumes/" >}}を参照してください。
 
@@ -193,7 +193,7 @@ Kubernetesドキュメントは非常に詳細です。より深く掘り下げ�
 
 * {{< link text="ノードオブジェクトの詳細" url="/docs/concepts/architecture/nodes/" >}}
 
-* {{< link text="Podオブジェクトの詳細" url="/docs/concepts/workloads/pods/pod-overview/" >}}
+* {{< link text="Podオブジェクトの詳細" url="/ja/docs/concepts/workloads/pods/pod-overview/" >}}
 
 ### チュートリアル
 
