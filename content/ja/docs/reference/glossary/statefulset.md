@@ -2,7 +2,7 @@
 title: StatefulSet
 id: statefulset
 date: 2018-04-12
-full_link: /docs/concepts/workloads/controllers/statefulset/
+full_link: /ja/docs/concepts/workloads/controllers/statefulset/
 short_description: >
   DeploymentとPodの集合のスケーリングを管理し、 *これらのPodの順序と一意性についての保証を提供* します。
 

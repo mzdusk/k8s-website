@@ -8,7 +8,7 @@ content_template: templates/user-journey-content
 ---
 
 {{% capture overview %}}
-Kubernetesでアプリケーションを実行することに関心のある開発者であれば、このページとリンク先のトピックが基礎から始めることを手助けします。このページではまず開発ワークフローを述べますが、{{< link text="中級" url="/docs/home/?path=users&persona=app-developer&level=intermediate" >}}ではより高度な本番セットアップを取りあげます。
+Kubernetesでアプリケーションを実行することに関心のある開発者であれば、このページとリンク先のトピックが基礎から始めることを手助けします。このページではまず開発ワークフローを述べますが、{{< link text="中級" url="/ja/docs/home/?path=users&persona=app-developer&level=intermediate" >}}ではより高度な本番セットアップを取りあげます。
 
 {{< note  >}}
 **メモ**<br>このアプリ開発者の「ユーザジャーニー」はKubernetesの包括的な概要では *ありません* 。ここでは基礎のインフラが *どのように* 動作するかではなく、 *何を* Kubernetesで開発、テスト、デプロイするのかに焦点をあてます。<br><br>多くの組織ではひとりで両方を管理することもありますが、一般的に{{< glossary_tooltip text="クラスタ管理者" term_id="cluster-operator" >}}は専任になります。
@@ -211,7 +211,7 @@ Kubernetesドキュメントは非常に詳細です。より深く掘り下げ�
 
 このページの話題がかなり容易だと感じ、詳細を学びたいのであれば、以下のユーザジャーニーをチェックしてください。
 
-* {{< link text="アプリケーション開発者 中級" url="/docs/user-journeys/users/application-developer/intermediate/" >}} - このジャーニーの次のレベルに飛び込みます。
-* {{< link text="Foundational Cluster Operator" url="/docs/user-journeys/users/cluster-operator/foundational/" >}} - 他のジャーニーを探索することで、知識の幅を広げます。
+* {{< link text="中級アプリケーション開発者" url="/ja/docs/user-journeys/users/application-developer/intermediate/" >}} - このジャーニーの次のレベルに飛び込みます。
+* {{< link text="初級クラスタ管理者" url="/ja/docs/user-journeys/users/cluster-operator/foundational/" >}} - 他のジャーニーを探索することで、知識の幅を広げます。
 
 {{% /capture %}}

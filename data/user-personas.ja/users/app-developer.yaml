@@ -1,31 +1,31 @@
 id: app-developer
-name: Application Developer
+name: アプリケーション開発者
 glossary_id: application-developer
 index: 0
 foundational:
-  - label: Get started with a cluster
+  - label: クラスタの用意
     icon: fa-television
     url: /ja/docs/user-journeys/users/application-developer/foundational
-  - label: Deploy an application
+  - label: アプリケーションのデプロイ
     icon: fa-retweet
     url: /ja/docs/user-journeys/users/application-developer/foundational#section-2
-  - label: Understand basic Kubernetes architecture
+  - label: 基本的なKubernetesアーキテクチャの理解
     icon: fa-cog
     url: /ja/docs/user-journeys/users/application-developer/foundational#section-3
-  - label: Explore additional resources
+  - label: 追加リソース
     icon: fa-book
     url: /ja/docs/user-journeys/users/application-developer/foundational#section-4
 intermediate:
-  - label: Learn additional workload patterns
+  - label: さらなるワークロードパターン
     icon: fa-cogs
-    url: /docs/user-journeys/users/application-developer/intermediate
-  - label: Deploy a production-ready workload
+    url: /ja/docs/user-journeys/users/application-developer/intermediate
+  - label: 本番稼動可能なワークロードのデプロイ
     icon: fa-retweet
-    url: /docs/user-journeys/users/application-developer/intermediate#section-2
-  - label: Improve your dev workflow with tooling
+    url: /ja/docs/user-journeys/users/application-developer/intermediate#section-2
+  - label: ツールで開発ワークフローを改善する
     icon: fa-scissors
-    url: /docs/user-journeys/users/application-developer/intermediate#section-3
-  - label: Explore additional resources
+    url: /ja/docs/user-journeys/users/application-developer/intermediate#section-3
+  - label: 追加リソース
     icon: fa-book
     url: /docs/user-journeys/users/application-developer/intermediate#section-4
 advanced:
