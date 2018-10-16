@@ -68,7 +68,7 @@ Deploymentと対照に、これらのAPIオブジェクトは有限です。こ�
 
 ## 本番稼動可能なワークロードのデプロイ
 
-{{< link text="Guestbookアプリ" url="/docs/tutorials/stateless-application/guestbook/" >}}のような初級者向けチュートリアルは、ワークロードの起動に焦点をおいています。このプロトタイプはKubernetesの知識を得るにはとても良いものです。しかし、ワークロードを確実かつセキュアに本番に昇格させるには、いくつかのベストプラクティスに従う必要があります。
+{{< link text="Guestbookアプリ" url="/ja/docs/tutorials/stateless-application/guestbook/" >}}のような初級者向けチュートリアルは、ワークロードの起動に焦点をおいています。このプロトタイプはKubernetesの知識を得るにはとても良いものです。しかし、ワークロードを確実かつセキュアに本番に昇格させるには、いくつかのベストプラクティスに従う必要があります。
 
 #### 宣言的な構成
 

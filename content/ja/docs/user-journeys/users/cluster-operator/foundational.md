@@ -66,7 +66,7 @@ Kubernetesとはダッシュボード、API、Kubernetes APIとやりとりす�
 * [Kubernetes 201](/docs/user-guide/walkthrough/k8s201/) - ラベル、Deployment、サービス、ヘルスチェック
 * [ConfigMapによるRedisの構成](/docs/tutorials/configuration/configure-redis-using-configmap/)
 * ステートレスアプリケーション
-  * [Redisを使ったPHP Guestbookのデプロイ](/docs/tutorials/stateless-application/guestbook/)
+  * [Redisを使ったPHP Guestbookのデプロイ](/ja/docs/tutorials/stateless-application/guestbook/)
   * [アプリケーションへアクセスするための外部IPの公開](/docs/tutorials/stateless-application/expose-external-ip-address/)
 
 {{% /capture %}}

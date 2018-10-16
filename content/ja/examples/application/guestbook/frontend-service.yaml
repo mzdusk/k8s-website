@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  labels:
+    app: guestbook
+    tier: frontend
+spec:
+  # LoadBalancerを使いたいのであれば、次の行をコメントまたは削除してください
+  type: NodePort 
+  # クラスタがサポートしてるのであれば、次の行をアンコメントすることで、自動的に
+  # フロントエンドServiceに対する外部ロードバランサIPが作成されます
+  # type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: guestbook
+    tier: frontend

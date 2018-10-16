@@ -31,7 +31,7 @@ content_template: templates/concept
 
 * [アプリケーションにアクセスするための外部IPアドレスの公開](/docs/tutorials/stateless-application/expose-external-ip-address/)
 
-* [例: Redisを使ったPHP Guestbookアプリケーションのデプロイ](/docs/tutorials/stateless-application/guestbook/)
+* [例: Redisを使ったPHP Guestbookアプリケーションのデプロイ](/ja/docs/tutorials/stateless-application/guestbook/)
 
 ## Stateful Applications
 

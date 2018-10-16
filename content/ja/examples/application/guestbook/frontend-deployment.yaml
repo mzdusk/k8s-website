@@ -1,0 +1,37 @@
+apiVersion: apps/v1 # バージョン1.9.0より前であれば、apps/v1beta2を使ってください
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: guestbook
+spec:
+  selector:
+    matchLabels:
+      app: guestbook
+      tier: frontend
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: guestbook
+        tier: frontend
+    spec:
+      containers:
+      - name: php-redis
+        image: gcr.io/google-samples/gb-frontend:v4
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: GET_HOSTS_FROM
+          value: dns
+          # `GET_HOSTS_FROM=dns`の使用にはクラスタにdnsサービスが必要です。
+          # Kubernetes 1.3より前では、DNSは自動的に起動される組み込みサービス
+          # でした。もし利用しているクラスタに組み込みDNSサービスがなければ、
+          # マスタServiceを探すため、かわりに環境変数にアクセスすることができます。
+          # そのためには、上の'value: dns'をコメントアウトし、下の行をアンコメント
+          # してください。
+          # value: env
+        ports:
+        - containerPort: 80
