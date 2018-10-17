@@ -184,5 +184,5 @@ $ sudo systemctl restart docker
 ```
 
 {{% capture whatsnext %}}
-* [Persistent Volume を持つ WordPress と MySQL のデプロイ](/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/) の例に進みましょう
+* [Persistent Volume を持つ WordPress と MySQL のデプロイ](/ja/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/) の例に進みましょう
 {{% /capture %}}
