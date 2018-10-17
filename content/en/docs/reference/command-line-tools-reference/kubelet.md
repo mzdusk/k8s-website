@@ -132,7 +132,7 @@ kubelet [flags]
        <td colspan="2">--bootstrap-checkpoint-path string</td> 
     </tr>
     <tr>
-      <td></td><td style="line-height: 130%; word-wrap: break-word;"><Warning: Alpha feature> Path to to the directory where the checkpoints are stored</td>
+      <td></td><td style="line-height: 130%; word-wrap: break-word;"><Warning: Alpha feature> Path to the directory where the checkpoints are stored</td>
     </tr>
 
      <tr>
@@ -140,13 +140,6 @@ kubelet [flags]
     </tr>
     <tr>
       <td></td><td style="line-height: 130%; word-wrap: break-word;">Path to a kubeconfig file that will be used to get client certificate for kubelet. If the file specified by --kubeconfig does not exist, the bootstrap kubeconfig is used to request a client certificate from the API server. On success, a kubeconfig file referencing the generated client certificate and key is written to the path specified by --kubeconfig. The client certificate and key file will be stored in the directory pointed by --cert-dir.</td>
-    </tr>
-
-     <tr>
-       <td colspan="2">--cadvisor-port int32</td> 
-    </tr>
-    <tr>
-      <td></td><td style="line-height: 130%; word-wrap: break-word;">The port of the localhost cAdvisor endpoint (set to 0 to disable) (default 4194)</td>
     </tr>
 
      <tr>
