@@ -1,6 +1,10 @@
 ---
 title: Jobs - Run to Completion
 content_template: templates/concept
+feature:
+  title: バッチ実行
+  description: >
+    サービスに加え、KubernetesはバッチとCIワークロードを管理でき、必要であれば失敗したコンテナを置き換えます。
 weight: 70
 ---
 
@@ -158,7 +162,7 @@ Pod内のコンテナは中のプロセスが非ゼロの終了コードで終�
 構成などでの論理エラーのためのリトライ数がある程度増えた場合にJobを失敗させたい状況があります。そうするために、`.spec.backoffLimit`にJobを失敗とみなすリトライ数を指定します。バックオフリミットはデフォルトでは6に設定されます。Jobに関連した失敗したPodは、6分を限度とする指数的なバックオフディレイ (10s, 20s, 40s) の後、Jobコントローラによって再作成されます。Jobの次のステータスチェックの際に新たに失敗したPodがなければ、バックオフカウントはリセットされます。
 
 {{< note >}}
-**メモ:** 既知の問題 [#54870](https://github.com/kubernetes/kubernetes/issues/54870) により、`.spec.template.spec.restartPolicy`フィールドに"`OnFailure`"が設定されると、バックオフ制限が無効になる可能性があります。手っ取り早い回避策は、再起動ポリシに"`Never`"を設定することです。
+**メモ:** Issue [#54870](https://github.com/kubernetes/kubernetes/issues/54870)は、バージョン1.12以前であれば、まだ存在しています。
 {{< /note >}}
 
 ## Jobの終了とクリーンアップ
@@ -191,6 +195,42 @@ spec:
 ```
 
 Job内のJobスペックと[Podテンプレートスペック](/ja/docs/concepts/workloads/pods/init-containers/#detailed-behavior)の両方ともが`activeDeadlineSeconds`フィールドを持つことに注意してください。適切なレベルにこのフィールドを設定していることを確認してください。
+
+## 終了したJobを自動的にクリーンアップする {#clean-up-finished-jobs-automatically}
+
+終了したJobは通常システムに必要ありません。これらを放置しておくことで、APIサーバに負荷がかかります。Jobが[CronJob](/ja/docs/concepts/workloads/controllers/cron-jobs/)のような、高レベルのコントローラで直接管理されていれば、指定したキャパシティベースのクリーンアップポリシに基づくCronJobによって、そのJobはクリーンアップされます。
+
+### 終了したJobに対するTTLメカニズム {#ttl-mechanism-for-finished-jobs}
+
+{{< feature-state for_k8s_version="v1.12" state="alpha" >}}
+
+終了したJob (`Complete`か`Failed`) を自動的にクリーンアップするもうひとつの方法は、Jobの`.spec.ttlSecondsAfterFinished`フィールドを指定することで、[TTL controller](/docs/concepts/workloads/controllers/ttlafterfinished/)によって提供されるTTLメカニズムを使うことです。
+
+TTLコントローラがJobをクリーンアップする場合、Jobはカスケード的に削除されます。すなわち、PodのようなそのJobに依存するオブジェクトも削除されます。Jobが削除されると、ファイナライザのようなライフサイクル保証は守られることに注意してください。
+
+例:
+
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi-with-ttl
+spec:
+  ttlSecondsAfterFinished: 100
+  template:
+    spec:
+      containers:
+      - name: pi
+        image: perl
+        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+      restartPolicy: Never
+```
+
+`pi-with-ttl`というJobは、終了してから`100`秒後に自動削除の対象となります。
+
+フィールドが`0`に設定されると、そのJobは終了後すぐに自動削除の対象になります。フィールドが設定されなければ、そのJobは終了後にTTLコントローラによってクリーンアップされなくなります。
+
+このTTLメカニズムは`TTLAfterFinished`というfeature gateのアルファ機能です。詳細は[TTL controller](/docs/concepts/workloads/controllers/ttlafterfinished/)を参照してください。
 
 ## Jobパターン {#job-patterns}
 

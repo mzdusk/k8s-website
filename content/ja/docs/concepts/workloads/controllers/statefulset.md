@@ -17,27 +17,26 @@ StatefulSetはステートフルアプリケーションを管理するために
 
 {{% capture body %}}
 
-## StatefulSetを使う
+## StatefulSetを使う {#using-statefulsets}
 
 StatefulSetは以下の1つ以上を必要とするアプリケーションに価値があります。
 
 * 安定した一意のネットワークID
 * 安定した永続ストレージ
 * 順序のある、きちんとしたデプロイとスケーリング
-* 順序のある、きちんとした削除と終了
 * 順序のある、自動化されたローリングアップデート
 
 上で、安定とはPodの(再)スケジュールを通じて永続することと同義です。もしアプリケーションが安定したIDや順序付きデプロイ、削除、スケーリングを必要としないのなら、ステートレスレプリカの集合を提供するコントローラでデプロイすべきです。[Deployment](/ja/docs/concepts/workloads/controllers/deployment/)や[ReplicaSet](/ja/docs/concepts/workloads/controllers/replicaset/)のようなコントローラはステートレスなニーズにより向いています。
 
-## 制限
+## 制限 {#limitations}
 
 * StatefulSetは1.9より前ではベータリソースで、1.5より前のリリースでは利用できません
-* すべてのアルファ/ベータリソースと同様、`--runtime-config`オプションをapiserverに渡すことでStatefulSetを無効にできます
 * Podに与えられるストレージは要求されるstorage classに基づいた[PersistentVolume Provisioner](https://github.com/kubernetes/examples/tree/{{< param "githubbranch" >}}/staging/persistent-volume-provisioning/README.md)によって供給されるか、管理者によって前もって供給されなければなりません
 * StetefulSetの削除やスケールダウンはそのStatefulSetに関連するボリュームを削除しません。これはデータの安全性を保証するためであり、一般的に関連するStatefulSetリソースの自動削除よりも価値があります。
 * StatefulSetは現在PodのネットワークIDに責任を負うため[Headless Service](/ja/docs/concepts/services-networking/service/#headless-services)が必要です。このサービスを作る責務はユーザにあります。
+* StatefulSetは、StatefulSetが削除された場合にPodが終了することを保証しません。きちんと順序だった削除を行うためには、StatefulSetを削除する前にスケールを0にします。
 
-## コンポーネント
+## コンポーネント {#components}
 
 以下にStatefulSetのコンポーネントを例示します。
 
@@ -96,19 +95,19 @@ spec:
           storage: 1Gi
 ```
 
-## Podセレクタ
+## Podセレクタ {#pod-selector}
 
 StatefulSetには`.spec.template.metadata.labels`のラベルと一致する`.spec.selector`フィールドを設定しなければなりません。Kubernetes 1.8より前は、`.spec.selector`が省略されると、デフォルト値が使われました。1.8以降ではマッチするPodセレクタの指定に失敗すると、StatefulSet作成中に不整合エラーが発生します。
 
-### Pod ID
+### Pod ID {#pod-identity}
 
 Stateful Podは順の安定したネットワークIDと安定したストレージから成る一意のIDを持ちます。このIDはどのノードに(再)スケジュールされたかにかかわらず永続的です。
 
-### 順序インデックス
+### 順序インデックス {#ordered-index}
 
 NレプリカのStatefulSetに対して、StatefulSetの各Podは0からN-1まで順に整数が割り当てられます。
 
-### 安定したネットワークID
+### 安定したネットワークID {#stable-network-id}
 
 StatefulSetの各PodはStaetfulSetの名前とPodの順からホスト名を得ます。構築されるホスト名のパターンは`$(statefulset name)-$(ordinal)`です。上の例では、`web-0, web-1, web-2`という名前の3つのPodが作られます。StatefulSetはそのPodのドメインを制御するために[Headless Service](/ja/docs/concepts/services-networking/service/#headless-services)を使えます。このサービスによって管理されるドメインは `$(service name).$(namespace).svc.cluster.local`という形をとり、"cluster.local"はクラスタドメインです。各Podが作成されると、マッチするDNSサブドメインを取得し、これは`$(podname).$(govering service domain)`という形をとり、govering serviceはStatefulSetの`serviceName`によって定義されます。
 
@@ -122,15 +121,15 @@ StatefulSetの各PodはStaetfulSetの名前とPodの順からホスト名を得�
 
 [何も構成しない](/ja/docs/concepts/services-networking/dns-pod-service/#how-it-works)場合、クラスタドメインは`cluster.local`に設定されることに注意してください。
 
-### 安定したストレージ
+### 安定したストレージ {#stable-storage}
 
 Kubernetesは各VolumeClaimTemplateに対して1つの[PersistentVolume](/ja/docs/concepts/storage/persistent-volumes/)を作成します。上のnginxの例では、各Podが`my-storage-class`のStorageClassと1Gibの供給されたストレージを持つ単一のPersistentVolumeを受け取ります。StorageClassは指定されなければ、デフォルトのStorageClassが使われます。Podがノードに(再)スケジュールされると、その`volumeMounts`はそのPersistentVolumeClaimに関連するPersistentVolumeをマウントします。PodやStatefulSetが削除された時に、PodのPersistentVolumeClaimに関連するPersistentVolumeは削除されないことに注意してください。これは手動で削除しなければなりません。
 
-### Pod名ラベル
+### Pod名ラベル {#pod-name-label}
 
 StatefulSetコントローラがPodを作成するとき、Podの名前を設定する`statefulset.kubernetes.io/pod-name`ラベルを追加します。
 
-## デプロイとスケーリング保証
+## デプロイとスケーリング保証 {deployment-and-scaling-guarantees}
 
 * NレプリカのStatefulSetに対して、Podがデプロイされると、0からN-1の順で順次作成されます。
 * Podが削除されると、N-1から0の逆順に終了します。
@@ -143,19 +142,19 @@ StatefulSetは`pod.Spec.TerminationGracePeriodSeconds`を0に指定すべきで�
 
 ユーザがStatefulSetに`replicas=1`のようなパッチを当てることでデプロイされた例をスケールすると、web-2が最初に終了されます。web-1はweb-2が完全にシャットダウンし削除されるまで終了されません。web-2が終了して完全にシャットダウンし、web-1が終了する前にweb-0が失敗すると、web-1はweb-0がRunning and Readyになるまで終了されません。
 
-### Pod管理ポリシ
+### Pod管理ポリシ {#pod-management-policies}
 
 Kubernetes 1.7以降では、StatefulSetは`.spec.podManagementPolicy`フィールドを通じて一意性と同一性の保証を予約することで順序保証を緩めることができます。
 
-#### OrderedReady Pod管理
+#### OrderedReady Pod管理 {#orderedready-pod-management}
 
 `OrderedReady` Pod管理はStatefulSetのデフォルトである。これは[上記](#デプロイとスケーリング保証)のようなふるまいを実装しています。
 
-#### Parallel Pod管理
+#### Parallel Pod管理 {#parallel-pod-management}
 
 `Parallel` Pod管理はStatefulSetコントローラに全てのPodを並列に起動もしくは終了するよう伝えます。これは前のPodの状態がRunning and Readyもしくは完全に終了するまで待つことはありません。
 
-## 更新戦略
+## 更新戦略 {#update-strategies}
 
 Kubernetes 1.7以降、StatefulSetの`.spec.updateStrategy`フィールドでコンテナやラベル、リソース要求/制限、Podのアノテーションに対して自動ローリングアップデートを構成または無効にできるようになりました。
 
@@ -163,11 +162,11 @@ Kubernetes 1.7以降、StatefulSetの`.spec.updateStrategy`フィールドでコ
 
 `OnDelete`更新戦略は昔の(1.6以前)ふるまいを実装しています。StatefulSetの`.spec.updateStrategy.type`を`OnDelete`に設定すると、StatefulコントローラはStatefulSetのPodを自動で更新しなくなります。StatefulSetの`.spec.template`に行った更新を反映した新しいPodをコントローラに作成させるためにはユーザが手動でPodを削除しなければなりません。
 
-### ローリングアップデート
+### ローリングアップデート {#rolling-updates}
 
 `RollingUpdate`更新戦略はStatefulSetのPodを自動でローリングアップデートをする実装です。これは`.spec.updateStrategy`が指定されなかった場合のデフォルト戦略です。StatefulSetの`.spec.updateStraetegy.type`を`RollingUpdate`に設定すると、StatefulControllerはStatefulSetのPodを削除し、再作成するようになります。Podの終了は同じ順 (最大の数字から最小へ) で実行され、Podの更新は一度に1つずつ行われます。更新されたPodがRunning and Readyになるまで次の更新は待ちます。
 
-#### 分割
+#### 分割 {#partitions}
 
 `RollingUpdate`更新戦略は`.spec.updateStrategy.rollingUpdate.partition`を指定することで分割できます。もし分割が指定されると、分割以上の数字を持つすべてのPodがStatefulSetの`.spec.template`が更新されたときに更新されます。分割未満の数字を持つPodは、それらが削除されたとしても更新されず、前のバージョンで再作成されます。StatefulSetの`.spec.updateStrategy.rollingUpdate.partition`が`.spec.replicas`より大きい場合、`.spec.template`の更新はPodに伝わりません。ほとんどの場合分割を使うことはありませんが、更新をステージしたり、テスト版をロールアウトしたり、段階的にロールアウトを実行したりしたい場合には便利です。
 

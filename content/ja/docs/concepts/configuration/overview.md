@@ -68,18 +68,31 @@ weight: 10
 - デバッグのためにラベルを操作できる。(ReplicaSetのような) Kubernetesコントローラとサービスはセレクタラベルを用いてPodにマッチするので、Podから関連するラベルを削除することでコントローラによる監視と、サービスからのトラフィックを止められる。既存のPodからラベルを削除すると、コントローラはそれを置き換える新しいPodを作成する。これは"隔離された"環境で以前は"生きていた"Podをデバッグするのに便利な方法である。インタラクティブにラベルを追加または削除するには、[`kubectl label`](/docs/reference/generated/kubectl/kubectl-commands#label)を使う。
 
 
-## コンテナイメージ
+## コンテナイメージ {#container-images}
 
-- コンテナに対するデフォルトの[imagePullPolicy](/ja/docs/concepts/containers/images/#updating-images)は`IfNotPresent`で、これはローカルにイメージが存在しない場合のみ[kubelet](/ja/docs/admin/kubelet/)にイメージをPullさせる。Kubernetesがコンテナを開始する時に毎回イメージをPullしたいのであれば、`imagePullPolicy: Always`を指定する
+[imagePullPolicy](/docs/concepts/containers/images/#updating-images)とイメージのタグは、[kubelet](/docs/admin/kubelet/)が特定のイメージをPullしようとするときに影響を与えます。
 
-  Kubernetesに毎回イメージをPullさせる別の推奨されない方法は`:latest`タグを使うことで、これは暗黙的に`imagePullPolicy`を`Always`に指定する。
+- `imagePullPolicy: IfNotPresent`: ローカルにイメージが存在しない場合にのみPullします
+
+- `imagePullPolicy: Always`: Podが起動すると、毎回イメージをPullします
+
+- `imagePullPolicy` がなく、イメージのタグが`:latest`か指定がない: `Always`が適用されます。
+
+- `imagePullPolicy` がなく、イメージのタグに`:latest`以外が指定されている: `IfNotPresent`が適用されます。
+
+- `imagePullPolicy: Never`: イメージがローカルに存在するとみなされます。イメージをPullしようとしません。
   
 {{< note >}}
-  **メモ:** 本番環境にコンテナをデプロイする場合、イメージのバージョンを追跡することが難しくなり、ロールバックも難しくなることから、`:latest`タグの使用は避けるべきである。
+  **メモ:** コンテナに同じイメージのバージョンを常に使わせるために、その[ダイジェスト](https://docs.docker.com/engine/reference/commandline/pull/#pull-an-image-by-digest-immutable-identifier) (例えば`sha256:45b23dee08af5e43a7fea6c4cf9c25ccf269ee113168c19722f87876677c5cb2`)を指定することができます。これは指定したバージョンのイメージを一意に識別するので、ダイジェストの値を変えない限りKubernetesによって更新されることは決してありません。
 {{< /note >}}
 
-- コンテナに同じイメージのバージョンを常に使わせるために、その[ダイジェスト](https://docs.docker.com/engine/reference/commandline/pull/#pull-an-image-by-digest-immutable-identifier) (例えば`sha256:45b23dee08af5e43a7fea6c4cf9c25ccf269ee113168c19722f87876677c5cb2`)を指定することができる。これは指定したバージョンのイメージを一意に識別するので、ダイジェストの値を変えない限りKubernetesによって更新されることは決してない。
+{{< note >}}
+  **メモ:** 本番環境にコンテナをデプロイする場合、実行しているイメージのバージョンを追跡することが難しくなり、適切なロールバックも難しくなることから、`:latest`タグの使用は避けるべきです。
+{{< /note >}}
 
+{{< note >}}
+  **メモ:** イメージプロバイダのキャッシングの仕組みは`imagePullPolicy: Always`でさえ効果的にします。例えばDockerであれば、イメージが既に存在していれば、すべてのイメージレイヤがキャッシュされていて、イメージのダウンロードが不要になるため、Pullは高速になります。
+{{< /note >}}
 
 ## kubectlの利用
 

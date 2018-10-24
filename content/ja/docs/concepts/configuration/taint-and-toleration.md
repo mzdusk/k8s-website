@@ -177,9 +177,9 @@ Kubernetesは、ユーザによって提供されたPodスペックにすでに`
   * `node.alpha.kubernetes.io.unreachable`
   * `node.kubernetes.io/not-ready`
 
-## 条件によるノードの汚染
+## 条件によるノードの汚染 {#taint-nodes-by-condition}
 
-バージョン1.8ではノードの条件に応じてノードコントローラに汚染を作成させるアルファ機能が導入されました。この機能を有効にする (`--feature-gates=FooBar=true,TaintNodesByCondition=true`のように、スケジューラの`--feature-gates`コマンドラインフラグに`TaintNodesByCondition=true`を含めることで実現できる) と、スケジューラはノードの条件をチェックせず、かわりに汚染をチェックします。これはノード条件が、ノードにスケジュールされるものに影響を与えないことを保証します。ユーザは適切なPod耐性を追加することで、(ノード条件として表現される)いくつかのノード問題を無視することを選択することができます。
+バージョン1.12では、`TaintNodesByCondition`機能がベータに昇格したので、ノードライフサイクルコントローラはノード条件に応じて汚染を自動的に作成します。同様に、スケジューラはノード条件をチェックしません。かわりに汚染をチェックします。これはノード条件がノードにスケジュール済みのものに対して確実に影響を与えないようにします。ユーザは適切なPod耐性を追加することで、(ノード条件として表現される) いくつかのノード問題を無視することができます。`TaintNodesByCondition`は`NoSchedule`効果のあるノードのみを汚染することに注意してください。`NoExecute`効果は、アルファ機能でデフォルトでは無効になっている`TaintBasedEvivsion`によって制御されます。
 
 Kubernetes 1.8から、DaemonSetコントローラは、DaemonSetが壊れるのを防ぐために、以下の`NoSchedule`耐性をすべてのデーモンに自動的に付加します。
 

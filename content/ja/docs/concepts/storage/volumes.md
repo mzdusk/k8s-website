@@ -136,11 +136,7 @@ spec:
 
 ## マウント伝播
 
-{{< feature-state for_k8s_version="v1.10" state="beta" >}}
-
 マウント伝播はコンテナによってマウントされたボリュームを、同じ Pod の他のコンテナもしくは同じノードの他の Pod にも、共有することを可能にします。
-
-`MountPropagation` 機能が無効であるか、Pod が特定のマウント伝播を明示的に指定しなければ、Pod のコンテナにマウントされたボリュームは伝播しません。したがって、コンテナは [Linux kernel documentation](https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt)に書かれている `private` マウント伝播を用いて実行されます。
 
 ボリュームのマウント伝播は Container.volumeMounts の `mountPropagation` フィールドで制御されます。以下の値をとります。
 

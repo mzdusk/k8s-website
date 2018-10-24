@@ -30,7 +30,7 @@ Kubernetesの高度な機能の多くは機能を正しくサポートするた�
 Kubernetes APIサーバフラグ `enable-admission-plugin`は、クラスタでオブジェクトが編集される前に実行するアドミッションコントロールプラグインのカンマ区切りリストを取ります。例えば、次のコマンドラインは`NamespaceLifecycle`と`LimitRanger`のアドミッションコントロールプラグインを有効にします。
 
 ```shell
-kube-apiserver --enable-admission-plugins=NamespaceLifecyle,LimitRanger ...
+kube-apiserver --enable-admission-plugins=NamespaceLifecycle,LimitRanger ...
 ```
 
 {{< note >}}
@@ -44,6 +44,21 @@ Kubernetes APIサーバフラグ `desable-admission-plugins`は、デフォル�
 ```shell
 kube-apiserver --disable-admission-plugins=PodNodeSelector,AlwaysDeny ...
 ```
+
+## どのプラグインがデフォルトで有効なのですか？ {#which-plugins-are-enabled-by-default}
+
+有効になっているアドミッションプラグインは次のようにして見ることができます。
+
+```shell
+kube-apiserver -h | grep enable-admission-plugins
+```
+
+1.11では次のようになります。
+
+```shell
+NamespaceLifecycle,LimitRanger,ServiceAccount,PersistentVolumeLabel,DefaultStorageClass,DefaultTolerationSeconds,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,ResourceQuota,Priority
+```
+
 
 ## それぞれのアドミッションコントローラは何をするのですか？ {#what-does-each-admission-controller-do}
 
@@ -282,7 +297,7 @@ MutatingAdmissionWebhookを無効にするのであれば、`--runtime-config`�
    * 元々は設定されていないフィールドを設定することは、元のリクエストで設定されるフィールドを上書きすることよりも、あまり問題になりません。後者を行うことは避けてください
  * これはベータ機能です。将来のKubernetesではこれらのWebhookが行える変更のタイプが制限される可能性があります
  * 組込みリソースやサードパーティリソースに対する制御ループの将来的な変更で今うまく動作するWebhookが壊れる可能性があります。WebhookインストールAPIが確定したとしても、すべてのWebhookのふるまいが将来にわたって保証され、サポートされるわけではありません
- 
+
 ### NamespaceAutoProvision {#namespaceautoprovision}
 
 このアドミッションコントローラは名前空間が指定されたリソースのすべてのリクエストを検査し、参照する名前空間が存在するかどうかをチェックします。もし見つからなければ名前空間を作成します。このアドミッションコントローラは、名前空間の作成を前もって作成しているものに制限したくないDeploymentに便利です。
@@ -461,9 +476,9 @@ Kubernetes 1.9以前では、以下のセットを実行することをお勧め
   ```shell
   --admission-control=NamespaceLifecycle,LimitRanger,ServiceAccount,DefaultStorageClass,DefaultTolerationSeconds,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,ResourceQuota
   ```
-  
+
   * 1.9でくり返し言及しておく価値があることは、変更フェーズの後に検証フェーズが行われるということです。例えば、`ResourceQuota`は検証フェーズで実行するので、最後に実行するアドミッションコントローラです。`MutatingAdmissionWebhook`は変更フェーズで実行するので、`ResourceQuota`よりも前にいます。
-  
+
     これより前のバージョンでは変更対検証の概念がないので、アドミッションコントローラは指定された順に実行します。
 
 * v1.6 - v1.8

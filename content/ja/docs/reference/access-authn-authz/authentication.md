@@ -9,7 +9,7 @@ weight: 10
 {{% /capture %}}
 
 {{% capture body %}}
-## Kubernetesのユーザ
+## Kubernetesのユーザ {#users-in-kubernetes}
 
 すべてのKubernetesクラスタは2カテゴリのユーザを持ちます。Kubernetesによって管理されるサービスアカウントと通常のユーザです。
 
@@ -19,7 +19,7 @@ weight: 10
 
 APIリクエストは通常ユーザかサービスアカウントに結びつけられ、そうしなければ匿名リクエストとして扱われます。これはワークステーションで`kubectl`をタイプする人間のユーザから、ノードの`kubelet`、コントロールプレーンのメンバーまで、クラスタの内部または外部のすべてのプロセスは、APIサーバへのリクエストを作成するときに認証しなければならず、そうでなければ匿名ユーザとして扱われることを意味します。
 
-## 認証戦略
+## 認証戦略 {#authentication-strategies}
 
 Kubernetesは認証プラグインを通じてAPIリクエストを認証するためにクライアント証明書や、無記名トークン、認証プロキシ、もしくはHTTPベーシック認証を使います。HTTPリクエストがAPIサーバへ到達すると、プラグインは以下の属性をリクエストに関連付けようとします。
 
@@ -41,7 +41,7 @@ Kubernetesは認証プラグインを通じてAPIリクエストを認証する�
 
 他の認証プロトコル (LDAP, SAML, Kerberos, 代替x509スキームなど) との統合は [認証プロキシ](#認証プロキシ)や[認証Webhook](#webhookトークン認証)を使って遂行されます。
 
-### X509クライアント証明書
+### X509クライアント証明書 {#x509-client-certs}
 
 クライアント証明書認証はAPIサーバに`--client-ca-file=SOMEFILE`を渡すことで有効にできます。参照されるファイルは、APIサーバに提示されるクライアント証明書を認証するのに使われる1つ以上の証明機関を含まなければなりません。クライアント証明書が提示され認証されると、サブジェクトのコモンネームがリクエストに対するユーザ名として使われます。Kubernetes 1.4から、クライアント証明書は証明書の組織フィールドを使ってユーザのグループを指定できるようにもなりました。ユーザを複数グループに含めるためには、証明書に複数の組織フィールドを含めます。
 
@@ -55,7 +55,7 @@ openssl req -new -key jbeda.pem -out jbeda-csr.pem -subj "/CN=jbeda/O=app1/O=app
 
 クライアント証明書の生成方法については、[証明書の管理](/ja/docs/concepts/cluster-administration/certificates/)を参照してください。
 
-### 静的トークンファイル
+### 静的トークンファイル {#static-token-file}
 
 APIサーバはコマンドラインで`--token-auth-file=SOMEFILE`が与えられるとファイルから無記名トークンを読み込みます。現在、トークンは無期限に有効で、トークンリストはAPIサーバの再起動なしに変更することはできません。
 
@@ -69,7 +69,7 @@ token,user,uid,"group1,group2,group3"
 ```
 {{< /note >}}
 
-#### 無記名トークンをリクエストに追加する
+#### 無記名トークンをリクエストに追加する {#putting-a-bearer-token-in-a-request}
 
 HTTPクライアントから無記名トークン認証を使うとき、APIサーバは`Bearer THETOKEN`の値を持つ`Authrization`ヘッダがあることを期待します。無記名トークンは、HTTPのエンコーディングやクオーティングの仕組みを使わないHTTPヘッダ値を設定できる文字列でなければなりません。たとえば、無記名トークンが`31ada4fd-adec-460c-809a-9e56ceb75269`であれば、HTTPヘッダは以下のようになります。
 
@@ -77,7 +77,7 @@ HTTPクライアントから無記名トークン認証を使うとき、APIサ�
 Authorization: Bearer 31ada4fd-adec-460c-809a-9e56ceb75269
 ```
 
-### ブートストラップトークン
+### ブートストラップトークン {#bootstrap-tokens}
 
 この機能は現在 **アルファ** です。
 
@@ -95,7 +95,7 @@ APIサーバで`--experimental-bootstrap-token-auth`を使ってブートスト�
 
 `kubeadm`でこれらのトークンを管理する方法と併せてブートストラップトークン認証モジュールとコントローラについての詳細なドキュメントについては、[ブートストラップトークン](/docs/reference/access-authn-authz/bootstrap-tokens/)を参照してください。
 
-### 静的パスワードファイル
+### 静的パスワードファイル {#static-password-file}
 
 ベーシックん印象は `--basic-auth-file=SOMEFILE`オプションをAPIサーバに渡すことで有効になります。現在ベーシック認証資格情報は無制限に有効で、APIサーバの再起動なしにパスワードを変更することはできません。ベーシック認証は現在、利便性のためにサポートされていますが、上で述べたようなよりセキュアなモードをより使いやすくしました。
 
@@ -107,7 +107,7 @@ password,user,uid,"group1,group2,group3"
 
 HTTPクライアントからベーシック認証を使う時、APIサーバは`Basic BASE64ENCODED(USER:PASSWORD)`の値を持つ`Authorization`ヘッダがあることを期待します。
 
-### サービスアカウントトークン
+### サービスアカウントトークン {#service-account-tokens}
 
 サービスアカウントはリクエストを認証するために署名された無記名トークンを使う自動的に有効になる認証モジュールです。このプラグインは2つのオプションのフラグを取ります。
 
@@ -177,7 +177,7 @@ type: kubernetes.io/service-account-token
 
 警告: サービスアカウントトークンはSecretに格納されるので、これらのSecretへの参照権限を持つユーザはサービスアカウントとして認証できます。サービスアカウントの権限をSecretへの参照権限を与える時は注意してください。
 
-### OpenID Connectトークン
+### OpenID Connectトークン {#openid-connect-tokens}
 
 [OpenID Connect](https://openid.net/connect/)は特にAzure Active DirectoryやSalesforce, GoogleといったいくつかのOAuth2プロバイダがサポートするOAuth2の拡張です。このプロトコルのOAuth2からの主な拡張は、[IDトークン](https://openid.net/specs/openid-connect-core-1_0.html#IDToken)と呼ばれるアクセストークンを返す追加フィールドです。このトークンは、ユーザのメールアドレスといったよく知られたフィールドを持つサーバによって署名された JSON Web Token (JWT) です。
 
@@ -201,7 +201,7 @@ type: kubernetes.io/service-account-token
 2. `id_token`は失効させられず、証明書のようなものであるので、有効期限を短く (数分程度) しなければならないので、数分ごとに新しいトークンを得る必要がある点が非常に悩ましくなる可能性があります。
 3. `kubectl proxy`コマンドまたは`id_token`を注入するリバースプロキシを使わずにKubernetesダッシュボードへの認証を行う容易な方法はありません。
 
-#### APIサーバの構成
+#### APIサーバの構成 {#configuring-the-api-server}
 
 プラグインを有効にするために、APIサーバで以下のフラグを構成します。
 
@@ -233,13 +233,13 @@ Kubernetesで利用するIDプロバイダは以下の条件を満たす必要�
 - [Dex](https://speakerdeck.com/ericchiang/kubernetes-access-control-with-dex)
 - [OpenUnison](https://github.com/TremoloSecurity/openunison-qs-kubernetes)
 
-#### kubectlを使う
+#### kubectlを使う {#using-kubectl}
 
-##### Option 1 - OIDC認証モジュール
+##### Option 1 - OIDC認証モジュール {#option-1---oidc-authenticator}
 
 最初のオプションはkubectlの`oidc`認証モジュールを使うことで、これはすべてのリクエストに無記名トークンとして`id_token`を設定し、トークンの期限が切れると更新します。プロバイダにログインした後、`id_token`、`refresh_token`、`client_id`、`client_secret`を追加し、プラグインを構成するためにkubectlを使います。
 
-リフレッシュトークンレスポンスの一部として`id_token`を返さないプロバイダ (例えば[Okta](https://developer.okta.com/docs/api/resources/oidc.html#response-parameters-4)) はこのプラグインではサポートされず、次の"Option 2"を使うべきです。
+リフレッシュトークンレスポンスの一部として`id_token`を返さないプロバイダはこのプラグインではサポートされず、次の"Option 2"を使うべきです。
 
 ```bash
 kubectl config set-credentials USER_NAME \
@@ -284,7 +284,7 @@ users:
 
 `id_token`の有効期限が切れると、`kubectl`は`.kube/config`に格納してある`refresh_token`と`client_secret`を使って`id_token`を更新しようとします。
 
-##### Option 2 - `--token`オプションを使う
+##### Option 2 - `--token`オプションを使う {#option-2---use-the---token-option}
 
 `kubectl`コマンドには`--token`オプションを使ってトークンを渡せます。単純に`id_token`をこのオプションにコピーアンドペーストします。
 
@@ -292,7 +292,7 @@ users:
 kubectl --token=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL21sYi50cmVtb2xvLmxhbjo4MDQzL2F1dGgvaWRwL29pZGMiLCJhdWQiOiJrdWJlcm5ldGVzIiwiZXhwIjoxNDc0NTk2NjY5LCJqdGkiOiI2RDUzNXoxUEpFNjJOR3QxaWVyYm9RIiwiaWF0IjoxNDc0NTk2MzY5LCJuYmYiOjE0NzQ1OTYyNDksInN1YiI6Im13aW5kdSIsInVzZXJfcm9sZSI6WyJ1c2VycyIsIm5ldy1uYW1lc3BhY2Utdmlld2VyIl0sImVtYWlsIjoibXdpbmR1QG5vbW9yZWplZGkuY29tIn0.f2As579n9VNoaKzoF-dOQGmXkFKf1FMyNV0-va_B63jn-_n9LGSCca_6IVMP8pO-Zb4KvRqGyTP0r3HkHxYy5c81AnIh8ijarruczl-TK_yF5akjSTHFZD-0gRzlevBDiH8Q79NAr-ky0P4iIXS8lY9Vnjch5MF74Zx0c3alKJHJUnnpjIACByfF2SCaYzbWFMUNat-K1PaUk5-ujMBG7yYnr95xD-63n8CO8teGUAAEMx6zRjzfhnhbzX-ajwZLGwGUBT4WqjMs70-6a7_8gZmLZb2az1cZynkFRj2BaCkVT3A2RrjeEwZEtGXlMqKJ1_I2ulrOVsYx01_yD35-rw get nodes
 ```
 
-### Webhookトークン認証
+### Webhookトークン認証 {#webhook-token-authentication}
 
 Webhook認証は無記名トークンの認証に対するフックです。
 
@@ -302,6 +302,10 @@ Webhook認証は無記名トークンの認証に対するフックです。
 構成ファイルには[kubeconfig](/ja/docs/concepts/cluster-administration/authenticate-across-clusters-kubeconfig/)ファイル形式を使います。ファイル内の`clusters`はリモートサービスを参照し、`users`はAPIサーバフックを参照します。例は次のようになります。
 
 ```yaml
+# Kubernetes APIバージョン
+apiVersion: v1
+# APIオブジェクトの種類
+kind: Config
 # clustersはリモートサービスを参照します。
 clusters:
   - name: name-of-remote-authn-service
@@ -381,7 +385,7 @@ POSTボディは以下の形式になります。
 
 HTTPステータスコードは追加のエラーコンテキストを提供するために使われます。
 
-### 認証プロキシ
+### 認証プロキシ {#authenticating-proxy}
 
 APIサーバは`X-Remote-User`のようなリクエストヘッダの値からユーザを識別するように構成できます。これは認証プロキシとの組合せで使うために設計されています。
 
@@ -434,7 +438,7 @@ extra:
 * `--requestheader-allowed-names`はオプションです。Common Names (CN)のリストです。空であれば、どのようなCommon Nameでも許可されます。
 
 
-## 匿名リクエスト
+## 匿名リクエスト {#anonymous-requests}
 
 有効であれば、ほかに構成された認証メソッドで拒絶されなかったリクエストは匿名リクエストとして扱われ、`system:anonymous`のユーザ名と`system:unauthenticated`のグループ名が与えられます。
 
@@ -445,7 +449,7 @@ extra:
 1.6以降、認証モードに`AlwaysAllow`以外が使われていれば、匿名アクセスはデフォルトで有効になっており、APIサーバに`--anonymous-auth=false`を渡すことで無効にできます。1.6から、ABACとRBAC認可モジュールは`system:anonymous`ユーザまたは`system:unauthenticated`グループの明示的な認可が必要なので、`*`ユーザまたは`*`グループへのアクセスを許可する古いポリシルールには匿名ユーザは含まれません。
 
 
-## ユーザ切り替え
+## ユーザ切り替え {#user-impersonation}
 
 ユーザは切り替えヘッダを通じて他のユーザとして振る舞うことができます。これらはリクエストを認証するリクエストのユーザ情報に手動で上書きします。例えば、管理者は一時的に他のユーザに切り替えてリクエストが拒絶されるかどうかを見ることで、認可ポリシをデバッグするためにこの機能を使えます。
 
@@ -544,7 +548,7 @@ rules:
   resourceNames: ["view", "development"]
 ```
 
-## client-go 資格情報プラグイン
+## client-go 資格情報プラグイン {#client-go-credential-plugins}
 
 {{< feature-state for_k8s_version="v1.11" state="beta" >}}
 
@@ -552,7 +556,7 @@ rules:
 
 この機能は`k8s.io/client-go`によってネイティブにサポートされない認証プロトコル (LDAP, Kerberos, OAuth2, SAMLなど) とのクライアントサイド統合を意図したものです。このプラグインはプロトコル特有のロジックを実行し、不透明な資格情報を返します。ほぼすべての資格情報プラグインユースケースはクライアントプラグインによって生成された資格情報形式を解釈するために[Webhookトークン認証プラグイン](#webhookトークン認証プラグイン)をサポートするサーバサイドコンポーネントを必要とします。
 
-### ユースケース例
+### ユースケース例 {#example-use-case}
 
 仮説に基づいたユースケースでは、組織はユーザ固有のLDAP資格情報を交換する外部サービスを実行しています。このサービスはトークンを検証するための[Webhookトークン認証プラグイン](#webhookトークン認証プラグイン)リクエストにレスポンスを返す機能もあります。ユーザはワークステーションに資格情報プラグインをインストールする必要があります。
 
@@ -564,7 +568,7 @@ APIに対して認証するために、
 * APIサーバは外部サービスに`TokenReview`を送信するために[Webhookトークン認証プラグイン](#webhookトークン認証プラグイン)を使う
 * 外部サービスはトークンの署名を検証し、ユーザのユーザ名とパスワードを返す
 
-### 構成
+### 構成 {#configuration}
 
 資格情報プラグインは[kubectl構成ファイル](/ja/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)のuserフィールドの一部を通じて構成されます。
 
@@ -619,7 +623,7 @@ current-context: my-cluster
       apiVersion: "client.authentication.k8s.io/v1beta1"
 ```
 
-### 入力フォーマットと出力フォーマット
+### 入力フォーマットと出力フォーマット {#input-and-output-formats}
 
 実行されたコマンドは`ExecCredential`オブジェクトを`stdout`に出力します。`k8s.io/client-go`は`status`にある返された資格情報を使ってKubernetes APIに対して認証します。
 

@@ -44,7 +44,7 @@ Ingress は内向きの接続をクラスタサービスに到達させること
 
 Ingress リソースを使い始める前に、いくつかの事柄を理解しておくべきです。Ingress は Beta リソースで Kubernetes 1.1 以前のリリースでは利用できません。Ingress を満たすために Ingress コントローラが必要で、単純にリソースを作成するだけでは効果はありません。
 
-GCE/Google Kubernetes Engine はマスタに Ingress コントローラをデプロイします。Pod でいくつでもカスタム Ingress コントローラをデプロイできます。[ここ](https://git.k8s.io/ingress#running-multiple-ingress-controllers)と[ここ](https://git.k8s.io/ingress-gce/BETA_LIMITATIONS.md#disabling-glbc)で指示されているように、各 Ingress には適切なクラスをアノテーションしなければなりません。
+GCE/Google Kubernetes Engine はマスタに Ingress コントローラをデプロイします。Pod でいくつでもカスタム Ingress コントローラをデプロイできます。[ここ](https://git.k8s.io/ingress-nginx/docs/user-guide/multiple-ingress.md#multiple-ingress-controllers)と[ここ](https://git.k8s.io/ingress-gce/examples/PREREQUISITES.md#ingress-class)で指示されているように、各 Ingress には適切なクラスをアノテーションしなければなりません。
 
 このコントローラの [Beta 制限](https://github.com/kubernetes/ingress-gce/blob/master/BETA_LIMITATIONS.md#glbc-beta-limitations) を確認しておいて下さい。GCE/Google Kubernetes Engine 以外の環境では Pod として[コントローラをデプロイ](https://git.k8s.io/ingress-nginx/README.md)する必要があります。
 
@@ -89,6 +89,9 @@ Ingress リソースが動作するために、クラスタは起動している
 * F5 Networks は [F5 BIG-IP Controller for Kubernetes](http://clouddocs.f5.com/products/connectors/k8s-bigip-ctlr/latest) の[サポートとメンテナンス](https://support.f5.com/csp/article/K86859508)をしています。
 * [Kong](https://konghq.com) は [Kong Ingress Controller for Kubernetes](https://konghq.com/blog/kubernetes-ingress-controller-for-kong/) の[コミュニティ](https://discuss.konghq.com/c/kubernetes)と[商用](https://konghq.com/api-customer-success/)のサポートとメンテナンスを提供しています。
 * [Traefik](https://github.com/containous/traefik)はフル機能の Ingress コントローラ ([Let's Encrypt](https://letsencrypt.org), secrets, http2, websocket)で、[Containous](https://containo.us/services) による商用サポートも受けられます。
+* [NGINX, Inc.](https://www.nginx.com/)は[NGINX Ingress Controller for Kubernetes](https://www.nginx.com/products/nginx/kubernetes-ingress-controller)のサポートとメンテナンスを提供しています。
+* [HAProxy](http://www.haproxy.org/)は、ブログ記事の[HAProxy Ingress Controller for Kubernetes](https://www.haproxy.com/blog/haproxy_ingress_controller_for_kubernetes/)で言及された[jcmoraisjr/haproxy-ingress](https://github.com/jcmoraisjr/haproxy-ingress)というIngressコントローラをベースにしています。
+* [Istio](https://istio.io/)は[Control Ingress Traffic](https://istio.io/docs/tasks/traffic-management/ingress/)というIngressコントローラをベースにしています。
 
 ## Ingress のタイプ
 

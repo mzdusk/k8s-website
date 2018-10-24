@@ -1,5 +1,9 @@
 ---
 title: Persistent Volumes
+feature:
+  title: ストレージオーケストレーション
+  description: >
+    ローカルストレージや、<a href="https://cloud.google.com/storage/">GCP</a>や<a href="https://aws.amazon.com/products/storage/">AWS</a>といったパブリッククラウドプロバイダ、NFS, iSCSI, Gluster, Ceph, Cinder, Flockerといったネットワークストレージシステムなど、ユーザが選択したストレージシステムを自動的にマウントします。
 content_template: templates/concept
 weight: 20
 ---
@@ -332,18 +336,19 @@ Kubernetes 管理者は Persistent Volume がノードにマウントされる�
 
 以下のボリュームタイプでマウントオプションをサポートします。
 
-* GCEPersistentDisk
 * AWSElasticBlockStore
-* AzureFile
 * AzureDisk
-* NFS
-* iSCSI
-* RBD (Ceph Block Device)
+* AzureFile
 * CephFS
 * Cinder (OpenStack block storage)
+* GCEPersistentDisk
 * Glusterfs
-* VsphereVolume
+* NFS
 * Quotebyte Volumes
+* RBD (Ceph Block Device)
+* StrageOS
+* VsphereVolume
+* iSCSI
 
 マウントオプションは検証されないので、不正であれば単純にマウントに失敗します。
 
@@ -432,7 +437,7 @@ metadata:
 spec:
   containers:
     - name: myfrontend
-      image: dockerfile/nginx
+      image: nginx
       volumeMounts:
       - mountPath: "/var/www/html"
         name: mypd
@@ -548,6 +553,34 @@ spec:
 {{< note >}}
 **メモ:** 静的に供給されたボリュームはアルファリリースに対してのみサポートされます。管理者は Raw ブロックデバイスを利用する時にはこれらの値への配慮を行うべきです。
 {{< /note >}}
+
+## ボリュームスナップショットとスナップショットからのボリューム復元のサポート {#volume-snapshot-and-restore-volume-from-snapshot-support}
+
+{{< feature-state for_k8s_version="v1.12" state="alpha" >}}
+
+ボリュームスナップショット機能はCSIボリュームプラグインのみにサポートが追加されました。詳細は[volume snapshots](/docs/concepts/storage/volume-snapshots/)を参照してください。
+
+ボリュームスナップショットデータソースからボリュームを復元する機能を有効にするには、APIサーバとコントローラマネージャで`VolumeSnapshotDataSource` feature gateを有効にします。
+
+### ボリュームスナップショットからPersistentVolumeClaimを作成する {#create-persistent-volume-claim-from-volume-snapshot}
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: restore-pvc
+spec:
+  storageClassName: csi-hostpath-sc
+  dataSource:
+    name: new-snapshot-test
+    kind: VolumeSnapshot
+    apiGroup: snapshot.storage.k8s.io
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+```
+
 
 ## ポータブルな構成を書く
 
