@@ -21,7 +21,7 @@ Kubernetesクラスタの管理と運用を始める方法を学びたいので�
 
 Kubernetsは非常に柔軟なので、クラスタは様々な場所で実行できます。自身のラップトップや仮想マシンの中で動作するローカルの開発機からKubernetesとやりとりができます。Kubernetesはローカルやクラウドプロバイダでホストされている仮想マシン上でも実行できますし、ベアメタル上でも実行できます。
 
-クラスタは1つもしくは複数の[ノード](/docs/concepts/architecture/nodes/)で構成されます。ノードは物理もしくは仮想マシンです。複数のノードがあれば、それらのノードは[クラスタネットワーク](/docs/concepts/cluster-administration/networking/)で接続されます。ノードの数にかかわらず、すべてのKubernetesクラスタは通常同じコンポーネントを持ち、これらは[Kubernetesコンポーネント](/docs/concepts/overview/components)で詳述します。
+クラスタは1つもしくは複数の[ノード](/ja/docs/concepts/architecture/nodes/)で構成されます。ノードは物理もしくは仮想マシンです。複数のノードがあれば、それらのノードは[クラスタネットワーク](/docs/concepts/cluster-administration/networking/)で接続されます。ノードの数にかかわらず、すべてのKubernetesクラスタは通常同じコンポーネントを持ち、これらは[Kubernetesコンポーネント](/docs/concepts/overview/components)で詳述します。
 
 
 ## Kubernetesの基本について学ぶ

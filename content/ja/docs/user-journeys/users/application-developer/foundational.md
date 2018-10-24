@@ -191,7 +191,7 @@ Kubernetesドキュメントは非常に詳細です。より深く掘り下げ�
 
 * {{< link text="Kubernetesオブジェクトの理解" url="/docs/concepts/overview/working-with-objects/kubernetes-objects/" >}}
 
-* {{< link text="ノードオブジェクトの詳細" url="/docs/concepts/architecture/nodes/" >}}
+* {{< link text="ノードオブジェクトの詳細" url="/ja/docs/concepts/architecture/nodes/" >}}
 
 * {{< link text="Podオブジェクトの詳細" url="/ja/docs/concepts/workloads/pods/pod-overview/" >}}
 

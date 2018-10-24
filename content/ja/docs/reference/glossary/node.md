@@ -2,7 +2,7 @@
 title: ノード
 id: node
 date: 2018-10-15
-full_link: /docs/concepts/architecture/nodes/
+full_link: /ja/docs/concepts/architecture/nodes/
 short_description: >
   ノードはKubernetesのワーカマシンです。
 
