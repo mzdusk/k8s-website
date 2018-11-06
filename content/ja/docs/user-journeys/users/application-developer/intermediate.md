@@ -24,7 +24,7 @@ content_template: templates/user-journey-content
 
 ## さらなるワークロードパターン {#learn-additional-workload-pattern}
 
-Kubernetesのユースケースが複雑になるにしたがって、Kubernetesが提供するツールキットをさらに習熟することが手助けとなることに気付くかもしれません。{{< glossary_tooltip text="Deployment" term_id="deployment" >}}のような{{< link text="基本のワークロード" url="/docs/user-journeys/users/application-developer/foundational/#section-2" >}}オブジェクトは、アプリケーションの実行や更新、スケールを簡単にしてくれますが、すべてのシナリオに適しているわけではありません。
+Kubernetesのユースケースが複雑になるにしたがって、Kubernetesが提供するツールキットをさらに習熟することが手助けとなることに気付くかもしれません。{{< glossary_tooltip text="Deployment" term_id="deployment" >}}のような{{< link text="基本のワークロード" url="/ja/docs/user-journeys/users/application-developer/foundational/#section-2" >}}オブジェクトは、アプリケーションの実行や更新、スケールを簡単にしてくれますが、すべてのシナリオに適しているわけではありません。
 
 以下のAPIオブジェクトは、*永続* や *終了* といった、さらなるワークロードタイプに対する機能を提供します。
 

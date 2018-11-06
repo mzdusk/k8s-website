@@ -2,7 +2,7 @@
 title: Persistent Volume
 id: persistent-volume
 date: 2018-04-12
-full_link: /docs/concepts/storage/persistent-volumes/
+full_link: /ja/docs/concepts/storage/persistent-volumes/
 short_description: >
   クラスタのストレージの一部を表現するAPIオブジェクト。個々のPodのライフサイクルを越えて永続するプラガブルリソースとして一般的に利用可能。
 
