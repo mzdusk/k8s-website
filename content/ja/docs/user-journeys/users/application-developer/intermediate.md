@@ -146,7 +146,7 @@ Kubernetesオブジェクトを更新するためにkubectlを使う場合、異
 別のクラスタ管理者がクラスタを管理していたとしても、以下を知っておくことは有用です。
 
 * **{{< glossary_tooltip text="名前空間" term_id="namespace" >}}**: 分離のために使います
-* **{{< link text="リソースクオータ" url="/docs/concepts/policy/resource-quotas/" >}}**: チームのワークロードが
+* **{{< link text="リソースクオータ" url="/ja/docs/concepts/policy/resource-quotas/" >}}**: チームのワークロードが
   使えるものに影響します
 * **{{< link text="メモリ" url="/docs/tasks/configure-pod-container/assign-memory-resource/" >}}と
   {{< link text="CPU" url="/docs/tasks/configure-pod-container/assign-cpu-resource/" >}}要求**: Podやコンテナに与えられます
