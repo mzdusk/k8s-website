@@ -322,24 +322,24 @@ kubectl delete namespace mem-example
 
 ### アプリケーション開発者向け
 
-* [Assign CPU Resources to Containers and Pods](/docs/tasks/configure-pod-container/assign-cpu-resource/)
+* [コンテナとPodにCPUリソースを割り当てる](/ja/docs/tasks/configure-pod-container/assign-cpu-resource/)
 
-* [Configure Quality of Service for Pods](/docs/tasks/configure-pod-container/quality-service-pod/)
+* [Podのサービス品質を構成する](/docs/tasks/configure-pod-container/quality-service-pod/)
 
 ### クラスタ管理者向け
 
-* [Configure Default Memory Requests and Limits for a Namespace](/docs/tasks/administer-cluster/manage-resources/memory-default-namespace/)
+* [名前空間のデフォルトメモリ要求と上限を構成する](/docs/tasks/administer-cluster/manage-resources/memory-default-namespace/)
 
-* [Configure Default CPU Requests and Limits for a Namespace](/docs/tasks/administer-cluster/manage-resources/cpu-default-namespace/)
+* [名前空間のデフォフトCPU要求と上限を構成する](/docs/tasks/administer-cluster/manage-resources/cpu-default-namespace/)
 
-* [Configure Minimum and Maximum Memory Constraints for a Namespace](/docs/tasks/administer-cluster/manage-resources/memory-constraint-namespace/)
+* [名前空間の最小・最大メモリ制約を構成する](/docs/tasks/administer-cluster/manage-resources/memory-constraint-namespace/)
 
-* [Configure Minimum and Maximum CPU Constraints for a Namespace](/docs/tasks/administer-cluster/manage-resources/cpu-constraint-namespace/)
+* [名前空間の最小・最大CPU制約を構成する](/docs/tasks/administer-cluster/manage-resources/cpu-constraint-namespace/)
 
-* [Configure Memory and CPU Quotas for a Namespace](/docs/tasks/administer-cluster/manage-resources/quota-memory-cpu-namespace/)
+* [名前空間のメモリとCPUのクオータを構成する](/docs/tasks/administer-cluster/manage-resources/quota-memory-cpu-namespace/)
 
-* [Configure a Pod Quota for a Namespace](/docs/tasks/administer-cluster/manage-resources/quota-pod-namespace/)
+* [名前空間のPodクオータを構成する](/docs/tasks/administer-cluster/manage-resources/quota-pod-namespace/)
 
-* [Configure Quotas for API Objects](/docs/tasks/administer-cluster/quota-api-object/)
+* [APIオブジェクトのクオータを構成する](/docs/tasks/administer-cluster/quota-api-object/)
 
 {{% /capture %}}
