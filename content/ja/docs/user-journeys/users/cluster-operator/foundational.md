@@ -81,7 +81,7 @@ Kubernetesとはダッシュボード、API、Kubernetes APIとやりとりす�
 
 クラスタについての情報を得るためのリソースとその操作方法は以下を参照してください。
 
-* [計算資源、ストレージ資源、ネットワーク資源をモニタリングするツール](/docs/tasks/debug-application-cluster/resource-usage-monitoring/)
+* [計算資源、ストレージ資源、ネットワーク資源をモニタリングするツール](/ja/docs/tasks/debug-application-cluster/resource-usage-monitoring/)
 * [コアメトリクスパイプライン](/docs/tasks/debug-application-cluster/core-metrics-pipeline/)
   * [メトリクス](/docs/concepts/cluster-administration/controller-metrics/)
 

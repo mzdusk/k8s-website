@@ -150,7 +150,7 @@ Kubernetesオブジェクトを更新するためにkubectlを使う場合、異
   使えるものに影響します
 * **{{< link text="メモリ" url="/ja/docs/tasks/configure-pod-container/assign-memory-resource/" >}}と
   {{< link text="CPU" url="/ja/docs/tasks/configure-pod-container/assign-cpu-resource/" >}}要求**: Podやコンテナに与えられます
-* **{{< link text="モニタリング" url="/docs/tasks/debug-application-cluster/resource-usage-monitoring/" >}}**:
+* **{{< link text="モニタリング" url="/ja/docs/tasks/debug-application-cluster/resource-usage-monitoring/" >}}**:
   クラスタレベルとアプリレベルの両方です
 
 このリストは完全に網羅するものではありませんが、多くのチームはこれらすべてをケアする既存のプロセスを持っています。
